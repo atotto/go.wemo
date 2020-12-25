@@ -133,23 +133,12 @@ func (d *Device) GetBinaryState() int {
 	return result
 }
 
-<<<<<<< HEAD
 func (d *Device) Off() error {
 	return d.changeState(false)
 }
 
 func (d *Device) On() error {
 	return d.changeState(true)
-=======
-// Off toggle state to Off
-func (d *Device) Off() {
-	d.changeState(false)
-}
-
-// On toggle state to On
-func (d *Device) On() {
-	d.changeState(true)
->>>>>>> f697d7813d354c65c1716080ec60da2c0ce37bcb
 }
 
 // Toggle state
@@ -167,10 +156,6 @@ func (d *Device) SetState(newState bool) error {
 }
 
 func (d *Device) changeState(newState bool) error {
-<<<<<<< HEAD
-=======
-
->>>>>>> f697d7813d354c65c1716080ec60da2c0ce37bcb
 	message := newSetBinaryStateMessage(newState)
 	response, err := post(d.Host, "basicevent", "SetBinaryState", message)
 	if err != nil {
