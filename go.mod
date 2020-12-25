@@ -1,6 +1,6 @@
-module github.com/gecgooden/go.wemo
+module github.com/randohm/go.wemo
 
-go 1.14
+go 1.15
 
 require (
 	github.com/smartystreets/goconvey v1.6.4
