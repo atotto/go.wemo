@@ -29,13 +29,13 @@ const (
 )
 
 func post(hostAndPort, service, action, body string) (*http.Response, error) {
-	tcpConn, err := timeoutDialer(2*time.Second, 2*time.Second)("tcp", hostAndPort)
+	tcpConn, err := timeoutDialer(5*time.Second, 5*time.Second)("tcp", hostAndPort)
 	if err != nil {
 		return nil, err
 	}
 	defer tcpConn.Close()
 
-	preamble := fmt.Sprintf("POST http://%v/upnp/control/%s1 HTTP/1.1\r\nContent-type: text/xml; charset=\"utf-8\"\r\nSOAPACTION: \"urn:Belkin:service:%s:1#%s\"\r\nContent-Length: %v\r\n\r\n", hostAndPort, service, service, action, len(body))
+	preamble := fmt.Sprintf("POST /upnp/control/%s1 HTTP/1.1\r\nContent-type: text/xml; charset=\"utf-8\"\r\nSOAPACTION: \"urn:Belkin:service:%s:1#%s\"\r\nContent-Length: %v\r\n\r\n", service, service, action, len(body))
 	tcpConn.Write([]byte(preamble + body))
 
 	data, err := ioutil.ReadAll(tcpConn)
